@@ -18,7 +18,9 @@ import {
 import { LockIcon, PasswordOnIcon } from "../../Components/Icons";
 import { useAppNavigate } from "../../Hooks/useAppNavigate";
 
-const Authentication = () => {
+import { authRepository } from "../../Repositories";
+
+const AuthenticationPage = () => {
     const navigate = useAppNavigate();
 
     const [email, setEmail] = useState<string>();
@@ -26,12 +28,17 @@ const Authentication = () => {
 
     const [checkPassword, setCheckPassword] = useState<boolean>(false);
 
-    const handleAuth = () => {
+    const handleAuth = async () => {
         if (!email) return alert("Email invalido");
 
         if (!password) return alert("Senha invalida");
 
-        navigate("/home");
+        const response = await authRepository.authentication({
+            email,
+            password,
+        });
+
+        if (response.session && response.user) navigate("/home");
     };
 
     return (
@@ -105,4 +112,4 @@ const Authentication = () => {
     );
 };
 
-export default Authentication;
+export default AuthenticationPage;
