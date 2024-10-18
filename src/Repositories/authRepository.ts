@@ -1,4 +1,4 @@
-import { apiClient } from "../Configs/Api";
+import { apiClient, setAuthToken } from "../Configs/Api";
 import { handleErrorRepository } from "./handleErrorsRepository";
 
 class AuthRepository {
@@ -14,6 +14,8 @@ class AuthRepository {
                 email,
                 password,
             });
+
+            setAuthToken(data.session.token, data.user.id);
 
             return data;
         } catch (error) {

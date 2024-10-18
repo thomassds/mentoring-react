@@ -20,7 +20,7 @@ import { useAppNavigate } from "../../Hooks/useAppNavigate";
 
 import { authRepository } from "../../Repositories";
 
-const Authentication = () => {
+const AuthenticationPage = () => {
     const navigate = useAppNavigate();
 
     const [email, setEmail] = useState<string>();
@@ -112,4 +112,4 @@ const Authentication = () => {
     );
 };
 
-export default Authentication;
+export default AuthenticationPage;
